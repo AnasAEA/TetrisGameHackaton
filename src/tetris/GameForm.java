@@ -2,17 +2,28 @@
 package tetris;
 
 import javax.swing.JFrame;
+//source: https://www.jmdoudoux.fr/java/dej/chap-swing.htm
+//souce : https://docs.oracle.com/javase/7/docs/api/javax/swing/JComponent.html#paintComponent(java.awt.Graphics)
+//source : https://openclassrooms.com/forum/sujet/java-swing-paintcomponent
 
-/**
- *
- * @author Anas 2
- */
+
 public class GameForm extends JFrame {
 
-
+    //Avoir une refernce de GameArea pou qu'il soit accessible au gameThread (thread principal)
+    private GameArea ga; 
+    
+    //Constructeur GameForm (L'interface golbal de l'application)
     public GameForm() {
         initComponents();
-        this.add( new GameArea(gameAreaPosition, 10) );
+        ga =  new GameArea(gameAreaPosition, 10);
+        this.add(ga);
+        //creation du gameThread principal (mouvement en bas)
+        startGame();
+    }
+    
+    //Creation d'une fonction pour créer un game Thread chaque fois appelée
+    public void startGame(){
+        new gameThread(ga).start();
     }
 
     /**

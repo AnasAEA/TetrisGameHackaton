@@ -33,11 +33,15 @@ public class GameArea extends JPanel {
     public void pieceGeneratrice(){  
         piece = new Piece(new int[][] {{1},{1},{1},{1}} , Color.RED);
     }
+    //Creation de l'ilusion de deplacement : on calcule les noveaux cordonnées de la piece puis on renetialize tout et on redessine la piece
+    //Pour faire ca on va utiliser la methode repaint 
+    //source: https://www.educba.com/repaint-in-java/
+    //source : https://zetcode.com/javagames/animation/
     
     public void toggleMoveDown(){
         piece.moveDown();
         repaint();
-    }&
+    }
     
     private void dessinerPiece(Graphics g) {
         
